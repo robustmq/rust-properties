@@ -20,7 +20,7 @@ impl Config {
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>>{
     let contents = fs::read_to_string(config.file_path)?;
-    let results = search_case_insensitive(&config.query, &contents);
+    let results = get_value_by_key(&config.query, &contents);
     println!("With text: \n {:?}", results);
     Ok(())
 }
@@ -38,7 +38,7 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str>{
     results
 }
 
-pub fn search_case_insensitive<'a>(
+pub fn get_value_by_key<'a>(
     query: &str,
     contents: &'a str,
 ) -> Vec<&'a str> {
