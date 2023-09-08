@@ -11,7 +11,7 @@ fn main() {
    });
    
     println!("searching for : {}", config.query);
-    println!("searching for : {}", config.file_path);
+    println!("searching in file : {}", config.file_path);
     if let Err(e) = rust_properties::run(config){
         println!("Application error: {e}");
         process::exit(1);

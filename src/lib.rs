@@ -20,6 +20,41 @@ impl Config {
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>>{
     let contents = fs::read_to_string(config.file_path)?;
-    println!("With text: \n{contents}");
+    let results = search_case_insensitive(&config.query, &contents);
+    println!("With text: \n {:?}", results);
     Ok(())
+}
+
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str>{
+    let mut results = Vec::new();
+
+    for line in contents.lines(){
+        if line.contains(query){
+            results.push(line);
+        }
+    }
+    println!("result is : {:?}", results.first());
+
+    results
+}
+
+pub fn search_case_insensitive<'a>(
+    query: &str,
+    contents: &'a str,
+) -> Vec<&'a str> {
+    let query = query.to_lowercase();
+    let mut results = Vec::new();
+
+    for line in contents.lines() {
+        if line.to_lowercase().contains(&query) {
+           // results.push(line);
+           let v: Vec<&str> = line.split("=").collect();
+           println!("properties key is :{} " , v[0]);
+           println!("properties value is :{} " , v[1]);
+           results.push(v[1]);
+
+        }
+    }
+
+    results
 }
