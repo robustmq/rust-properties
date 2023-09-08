@@ -39,14 +39,14 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str>{
 }
 
 pub fn get_value_by_key<'a>(
-    query: &str,
+    keyword: &str,
     contents: &'a str,
 ) -> Vec<&'a str> {
-    let query = query.to_lowercase();
+    let keyword = keyword.to_lowercase();
     let mut results = Vec::new();
 
     for line in contents.lines() {
-        if line.to_lowercase().contains(&query) {
+        if line.to_lowercase().contains(&keyword) {
            // results.push(line);
            let v: Vec<&str> = line.split("=").collect();
            println!("properties key is :{} " , v[0]);

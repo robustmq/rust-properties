@@ -4,7 +4,7 @@
 mod tests {
 
     use rust_properties::search;
-    use rust_properties::search_case_insensitive;
+    use rust_properties::get_value_by_key;
 
     #[test]
     fn one_result() {
@@ -25,7 +25,7 @@ Rust=Trust";
 
         assert_eq!(
             vec!["Trust"],
-            search_case_insensitive(query, contents)
+            get_value_by_key(query, contents)
         );
     }
 }
